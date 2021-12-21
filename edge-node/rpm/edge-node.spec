@@ -11,7 +11,7 @@ Requires:   podman
 This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 
 %prep
-%autosetup -n %{reponame}-main
+%autosetup -n %{name}-main
 
 %install
 rm -rf %{buildroot}
@@ -55,6 +55,3 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/edge
 %systemd_postun_with_restart container-postgresql.service
 %systemd_postun_with_restart pod-postgresql-pod.service
 %systemd_postun_with_restart container-prometheus.service
-
-%changelog
-{{{ git_dir_changelog }}}
