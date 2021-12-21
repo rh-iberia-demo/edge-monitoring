@@ -6,7 +6,10 @@ License:    Apache-2.0
 URL:        https://github.com/rh-iberia-demo/edge-monitoring
 Source0:    https://github.com/rh-iberia-demo/edge-monitoring/archive/refs/heads/main.zip
 Requires:   podman
-BuildRequires: systemd-rpm-macros
+BuildRequires:      systemd
+Requires(post):     systemd
+Requires(preun):    systemd
+Requires(postun):   systemd
 
 %description
 This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
@@ -17,23 +20,23 @@ This is a side project created to understand the application of usual monitoring
 %install
 rm -rf %{buildroot}
 
-mkdir -p %{buildroot}%{_sysconfdir}/systemd/system
+mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_sysconfdir}/edge
 
-cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_sysconfdir}/systemd/system
-cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_sysconfdir}/systemd/system
-cp edge-node/postgresql/container-postgresql.service %{buildroot}%{_sysconfdir}/systemd/system
-cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_sysconfdir}/systemd/system
-cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_sysconfdir}/systemd/system
+cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
+cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
+cp edge-node/postgresql/container-postgresql.service %{buildroot}%{_unitdir}
+cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_sysconfdir}
+cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_sysconfdir}
 
 cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/edge
 
 %files
-%{_sysconfdir}/systemd/system/container-node-exporter.service
-%{_sysconfdir}/systemd/system/container-postgresql-exporter.service
-%{_sysconfdir}/systemd/system/container-postgresql.service
-%{_sysconfdir}/systemd/system/pod-postgresql-pod.service
-%{_sysconfdir}/systemd/system/container-prometheus.service
+%{_unitdir}/systemd/system/container-node-exporter.service
+%{_unitdir}/systemd/system/container-postgresql-exporter.service
+%{_unitdir}/systemd/system/container-postgresql.service
+%{_unitdir}/systemd/system/pod-postgresql-pod.service
+%{_unitdir}/systemd/system/container-prometheus.service
 %{_sysconfdir}/edge/prometheus.yml
 
 %post
