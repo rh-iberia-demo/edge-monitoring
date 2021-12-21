@@ -11,7 +11,7 @@ Requires:   podman
 This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 
 %prep
-%autosetup -n %{name}-main
+%autosetup -n edge-monitoring-main
 
 %install
 rm -rf %{buildroot}
