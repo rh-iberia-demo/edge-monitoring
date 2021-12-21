@@ -1,5 +1,7 @@
 # Edge Node
 
+[![Edg Node COPR Package](https://copr.fedorainfracloud.org/coprs/drhelius/edge-monitoring/package/edge-node/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/drhelius/edge-monitoring/package/edge-node/)
+
 The edge node has been defined in our case to run light containers. It will provide a simple and easy way to deploy different technologies ([prometheus](https://prometheus.io/), [node-exporter](https://prometheus.io/docs/guides/node-exporter/), database, services, etc), in a portable way, similar to what is expected for a container orchestrator. The difference with this setup is that it has been lightened, eliminating the need of orchestration capabilities, assuming the limitations and the benefits of it.
 
 As a rule of thumb, we will try to store configuration files in /opt folder, to avoid any kind of clash with similar files for the operating system that can be included (sometimes just for showing examples).
