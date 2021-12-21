@@ -26,17 +26,17 @@ mkdir -p %{buildroot}%{_sysconfdir}/edge
 cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/container-postgresql.service %{buildroot}%{_unitdir}
-cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_sysconfdir}
-cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_sysconfdir}
+cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_unitdir}
+cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_unitdir}
 
 cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/edge
 
 %files
-%{_unitdir}/systemd/system/container-node-exporter.service
-%{_unitdir}/systemd/system/container-postgresql-exporter.service
-%{_unitdir}/systemd/system/container-postgresql.service
-%{_unitdir}/systemd/system/pod-postgresql-pod.service
-%{_unitdir}/systemd/system/container-prometheus.service
+%{_unitdir}/container-node-exporter.service
+%{_unitdir}/container-postgresql-exporter.service
+%{_unitdir}/container-postgresql.service
+%{_unitdir}/pod-postgresql-pod.service
+%{_unitdir}/container-prometheus.service
 %{_sysconfdir}/edge/prometheus.yml
 
 %post
