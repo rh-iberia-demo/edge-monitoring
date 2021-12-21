@@ -1,5 +1,5 @@
 Name:       edge-node
-Version:    {{{ git_dir_version }}}
+Version:    0.0.1
 Release:    1%{?dist}
 Summary:    This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 License:    Apache-2.0
