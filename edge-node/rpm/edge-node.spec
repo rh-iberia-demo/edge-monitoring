@@ -33,7 +33,7 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/edge
 %{_sysconfdir}/systemd/system/container-postgresql.service
 %{_sysconfdir}/systemd/system/pod-postgresql-pod.service
 %{_sysconfdir}/systemd/system/container-prometheus.service
-%{_sysconfdir}/edge/prometheus.yaml
+%{_sysconfdir}/edge/prometheus.yml
 
 %post
 %systemd_post container-node-exporter.service
