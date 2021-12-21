@@ -5,11 +5,13 @@ Summary:    This is a side project created to understand the application of usua
 License:    Apache-2.0
 URL:        https://github.com/rh-iberia-demo/edge-monitoring
 Source0:    https://github.com/rh-iberia-demo/edge-monitoring/archive/refs/heads/main.zip
-Requires:   podman
-BuildRequires:      systemd
+Requires:           podman
+Requires:           systemd
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
+BuildRequires:      systemd
+BuildRequires:      systemd-rpm-macros
 
 %description
 This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
