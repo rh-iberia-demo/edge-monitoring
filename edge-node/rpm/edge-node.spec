@@ -9,7 +9,7 @@
 Name:       edge-node
 Version:    {{{git_dir_version}}}
 Release:    1%{?dist}
-Summary:    This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
+Summary:    This is a side project created to understand the application of usual monitoring technologies in the container space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 License:    Apache-2.0
 URL:        https://github.com/rh-iberia-demo/edge-monitoring
 Source0:    https://github.com/rh-iberia-demo/edge-monitoring/archive/refs/heads/main.zip
@@ -22,7 +22,7 @@ BuildRequires:      systemd
 BuildRequires:      systemd-rpm-macros
 
 %description
-This is a side project created to understand the application of usual monitoring technologies in the contariner space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
+This is a side project created to understand the application of usual monitoring technologies in the container space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 
 %prep
 %autosetup -n edge-monitoring-main
