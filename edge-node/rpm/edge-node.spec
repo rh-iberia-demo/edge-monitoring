@@ -7,7 +7,7 @@
 #### (this is because Source0 is a remote Github location
 
 Name:       edge-node
-Version:    0.0.3
+Version:    {{{ git_dir_version }}}
 Release:    1%{?dist}
 Summary:    This is a side project created to understand the application of usual monitoring technologies in the container space (prometheus, thanos, grafana, etc) on usual RHEL scenarios.
 License:    Apache-2.0
