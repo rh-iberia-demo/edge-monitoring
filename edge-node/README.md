@@ -6,6 +6,12 @@ The edge node has been defined in our case to run light containers. It will prov
 
 As a rule of thumb, we will try to store configuration files in /opt folder, to avoid any kind of clash with similar files for the operating system that can be included (sometimes just for showing examples).
 
+We will implement an example app with a local database and a quarkus app.
+
+<p align="center">
+  <img src="edge-node.svg" alt="Sublime's custom image"/>
+</p>
+
 ## Prometheus
 
 We have chosen to use a push approach to send the metrics from the edge nodes to the central hub using remote-write storage configuration. Though, we will use `net=host` param only for debugging purposes.

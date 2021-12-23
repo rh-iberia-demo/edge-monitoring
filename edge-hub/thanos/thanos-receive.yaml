@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: thanos-receive
+  labels:
+    app: thanos-receive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thanos-receive
+  serviceName: thanos-receive
+  template:
+    metadata:
+      labels:
+        app: thanos-receive
+    spec:
+      serviceAccountName: thanos-receive
+      containers:
+      - name: thanos-receive
+        image: quay.io/thanos/thanos:v0.23.1
+        args:
+        - receive
+        - --tsdb.path=/data/remote-write-receive-data
+        - --debug.name=receive
+        - --log.level=debug
+        - --label=receive_cluster="es"
+        - --objstore.config-file=/etc/prometheus/store-s3-secret.yaml
+        ports:
+        - name: http
+          containerPort: 10902
+        - name: grpc
+          containerPort: 10901
+        - name: remote-write
+          containerPort: 19291
+        volumeMounts:
+        - name: s3-store-credentials
+          mountPath: /etc/prometheus/
+          readOnly: true
+        - name: remote-write-data
+          mountPath: /data/remote-write-receive-data
+      volumes:
+      - name: s3-store-credentials
+        secret:
+          secretName: store-s3-credentials
+      - name: remote-write-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: thanos-receive
+  name: thanos-receive
+spec:
+  ports:
+  - port: 10902
+    protocol: TCP
+    targetPort: http
+    name: http
+  - port: 10901
+    protocol: TCP
+    targetPort: grpc
+    name: grpc
+  - port: 19291
+    protocol: TCP
+    targetPort: remote-write
+    name: remote-write
+  selector:
+    app: thanos-receive
+  type: ClusterIP
