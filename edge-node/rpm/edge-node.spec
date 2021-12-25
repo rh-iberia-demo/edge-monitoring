@@ -40,11 +40,11 @@ cp edge-node/postgresql/container-postgresql.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_unitdir}
 cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_unitdir}
 
-echo "enable container-node-exporter.service" > %{buildroot}%{_presetdir}/container-node-exporter.preset
-echo "enable container-postgresql-exporter.service" > %{buildroot}%{_presetdir}/container-postgresql-exporter.preset
-echo "enable container-postgresql.service" > %{buildroot}%{_presetdir}/container-postgresql.preset
-echo "enable pod-postgresql-pod.service" > %{buildroot}%{_presetdir}/pod-postgresql-pod.preset
-echo "enable container-prometheus.service" > %{buildroot}%{_presetdir}/container-prometheus.preset
+echo "enable container-node-exporter.service" > %{buildroot}%{_presetdir}/80-container-node-exporter.preset
+echo "enable container-postgresql-exporter.service" > %{buildroot}%{_presetdir}/80-container-postgresql-exporter.preset
+echo "enable container-postgresql.service" > %{buildroot}%{_presetdir}/80-container-postgresql.preset
+echo "enable pod-postgresql-pod.service" > %{buildroot}%{_presetdir}/80-pod-postgresql-pod.preset
+echo "enable container-prometheus.service" > %{buildroot}%{_presetdir}/80-container-prometheus.preset
 
 cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
 
@@ -55,11 +55,11 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
 %{_unitdir}/pod-postgresql-pod.service
 %{_unitdir}/container-prometheus.service
 
-%{_presetdir}/container-node-exporter.preset
-%{_presetdir}/container-postgresql-exporter.preset
-%{_presetdir}/container-postgresql.preset
-%{_presetdir}/pod-postgresql-pod.preset
-%{_presetdir}/container-prometheus.preset
+%{_presetdir}/80-container-node-exporter.preset
+%{_presetdir}/80-container-postgresql-exporter.preset
+%{_presetdir}/80-container-postgresql.preset
+%{_presetdir}/80-pod-postgresql-pod.preset
+%{_presetdir}/80-container-prometheus.preset
 
 %{_sysconfdir}/prometheus/prometheus.yml
 
