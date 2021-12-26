@@ -1,0 +1,10 @@
+name = "edge-node"
+description = "Image base example of an edge node including systemd units with containers"
+version = "0.0.1"
+modules = []
+groups = []
+distro = ""
+
+[[packages]]
+name = "edge-node"
+version = "*"

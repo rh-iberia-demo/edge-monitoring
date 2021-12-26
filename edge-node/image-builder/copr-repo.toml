@@ -1,0 +1,9 @@
+id = "copr:copr.fedorainfracloud.org:drhelius:edge-monitoring"
+name = "Copr repo for edge-monitoring owned by drhelius"
+type = "yum-baseurl"
+url = "https://download.copr.fedorainfracloud.org/results/drhelius/edge-monitoring/fedora-35-x86_64"
+gpgkey = "https://download.copr.fedorainfracloud.org/results/drhelius/edge-monitoring/pubkey.gpg"
+check_gpg = false
+check_ssl = false
+system = false
+
