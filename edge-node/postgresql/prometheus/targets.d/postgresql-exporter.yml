@@ -1,3 +1,3 @@
 - targets: ['localhost:9187']
   labels:
-  - job: "postgresql"
+    job: "postgresql"
