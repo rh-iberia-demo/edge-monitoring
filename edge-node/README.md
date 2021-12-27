@@ -95,7 +95,7 @@ podman run \
   --detach="true" \
   --net="host" \
   --env="POSTGRES_PASSWORD=password" \
-  --name="postgresql" \
+  --name="postgresql-db" \
   docker.io/library/postgres:latest
 ```
 

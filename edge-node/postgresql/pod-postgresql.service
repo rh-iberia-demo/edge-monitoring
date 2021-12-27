@@ -8,8 +8,8 @@ Documentation=man:podman-generate-systemd(1)
 Wants=network-online.target
 After=network-online.target
 RequiresMountsFor=
-Requires=container-postgresql.service container-postgresql-exporter.service
-Before=container-postgresql.service container-postgresql-exporter.service
+Requires=container-postgresql-db.service container-postgresql-exporter.service
+Before=container-postgresql-db.service container-postgresql-exporter.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
