@@ -37,13 +37,13 @@ mkdir -p %{buildroot}%{_sysconfdir}/prometheus
 cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/container-postgresql.service %{buildroot}%{_unitdir}
-cp edge-node/postgresql/pod-postgresql-pod.service %{buildroot}%{_unitdir}
+cp edge-node/postgresql/pod-postgresql.service %{buildroot}%{_unitdir}
 cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_unitdir}
 
 echo "enable container-node-exporter.service" > %{buildroot}%{_presetdir}/80-container-node-exporter.preset
 echo "enable container-postgresql-exporter.service" > %{buildroot}%{_presetdir}/80-container-postgresql-exporter.preset
 echo "enable container-postgresql.service" > %{buildroot}%{_presetdir}/80-container-postgresql.preset
-echo "enable pod-postgresql-pod.service" > %{buildroot}%{_presetdir}/80-pod-postgresql-pod.preset
+echo "enable pod-postgresql.service" > %{buildroot}%{_presetdir}/80-pod-postgresql.preset
 echo "enable container-prometheus.service" > %{buildroot}%{_presetdir}/80-container-prometheus.preset
 
 cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
@@ -52,13 +52,13 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
 %{_unitdir}/container-node-exporter.service
 %{_unitdir}/container-postgresql-exporter.service
 %{_unitdir}/container-postgresql.service
-%{_unitdir}/pod-postgresql-pod.service
+%{_unitdir}/pod-postgresql.service
 %{_unitdir}/container-prometheus.service
 
 %{_presetdir}/80-container-node-exporter.preset
 %{_presetdir}/80-container-postgresql-exporter.preset
 %{_presetdir}/80-container-postgresql.preset
-%{_presetdir}/80-pod-postgresql-pod.preset
+%{_presetdir}/80-pod-postgresql.preset
 %{_presetdir}/80-container-prometheus.preset
 
 %{_sysconfdir}/prometheus/prometheus.yml
@@ -67,19 +67,19 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
 %systemd_post container-node-exporter.service
 %systemd_post container-postgresql-exporter.service
 %systemd_post container-postgresql.service
-%systemd_post pod-postgresql-pod.service
+%systemd_post pod-postgresql.service
 %systemd_post container-prometheus.service
 
 %preun
 %systemd_preun container-node-exporter.service
 %systemd_preun container-postgresql-exporter.service
 %systemd_preun container-postgresql.service
-%systemd_preun pod-postgresql-pod.service
+%systemd_preun pod-postgresql.service
 %systemd_preun container-prometheus.service
 
 %postun
 %systemd_postun_with_restart container-node-exporter.service
 %systemd_postun_with_restart container-postgresql-exporter.service
 %systemd_postun_with_restart container-postgresql.service
-%systemd_postun_with_restart pod-postgresql-pod.service
+%systemd_postun_with_restart pod-postgresql.service
 %systemd_postun_with_restart container-prometheus.service

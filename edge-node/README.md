@@ -84,14 +84,14 @@ podman run \
 In this case, as we want to run two containers, the database and the exporter, sharing the same cgroup, we can do it like a kubernetes pod, creating it with `podman-pod-create`, like it is described in [this post](https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods). 
 
 ```bash
-podman pod create --name postgresql-pod
+podman pod create --name postgresql
 ```
 
 Then, we will run the containers in the pod space with `--pod`
 
 ```bash
 podman run \
-  --pod="postgresql-pod" \
+  --pod="postgresql" \
   --detach="true" \
   --net="host" \
   --env="POSTGRES_PASSWORD=password" \
@@ -101,7 +101,7 @@ podman run \
 
 ```bash
 podman run \
-  --pod="postgresql-pod" \
+  --pod="postgresql" \
   --detach="true" \
   --net="host" \
   --env="DATA_SOURCE_NAME=postgresql://postgres:password@localhost:5432/postgres?sslmode=disable" \
@@ -112,5 +112,5 @@ podman run \
 Now, we can create the systemd unit with all the containers.
 
 ```bash
-podman generate systemd --files --name postgresql-pod
+podman generate systemd --files --name postgresql
 ```
