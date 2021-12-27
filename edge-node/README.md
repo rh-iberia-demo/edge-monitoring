@@ -16,7 +16,7 @@ We will implement an example app with a local database and a quarkus app.
 
 We have chosen to use a push approach to send the metrics from the edge nodes to the central hub using remote-write storage configuration. Though, we will use `net=host` param only for debugging purposes.
 
-The [prometheus configuration](prometheus/prometheus.yml) will be stored in `/opt/prometheus/prometheus.yml`.
+The [prometheus configuration](prometheus/prometheus.yml) will be stored in `/etc/prometheus/prometheus.yml`.
 
 The configuration will include a job scraper for every target (node-exporter, database, service), and a remote write for thanos receiver, which is explained in the central hub.
 
@@ -25,7 +25,7 @@ The command to run a prometheus container service in RHEL is:
 ```bash
 podman run \
   --detach="true" \
-  --volume="/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:z" \
+  --volume="/etc/prometheus:/etc/prometheus:z" \
   --net="host" \
   --name="prometheus" \
   quay.io/prometheus/prometheus:latest

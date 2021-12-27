@@ -33,6 +33,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_presetdir}
 mkdir -p %{buildroot}%{_sysconfdir}/prometheus
+mkdir -p %{buildroot}%{_sysconfdir}/prometheus/targets.d
 
 cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
 cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
@@ -47,6 +48,7 @@ echo "enable pod-postgresql.service" > %{buildroot}%{_presetdir}/80-pod-postgres
 echo "enable container-prometheus.service" > %{buildroot}%{_presetdir}/80-container-prometheus.preset
 
 cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
+cp edge-node/postgresql/prometheus/targets.d/postgresql-exporter.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
 
 %files
 %{_unitdir}/container-node-exporter.service
@@ -62,6 +64,7 @@ cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
 %{_presetdir}/80-container-prometheus.preset
 
 %{_sysconfdir}/prometheus/prometheus.yml
+%{_sysconfdir}/prometheus/targets.d/postgresql-exporter.yml
 
 %post
 %systemd_post container-node-exporter.service
