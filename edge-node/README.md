@@ -12,6 +12,8 @@ We will implement an example app with a local database and a quarkus app.
   <img src="edge-node.svg" alt="Sublime's custom image"/>
 </p>
 
+In order to be able to scrape logs, when podman runs in detached mode, log driver should be included. 
+
 ## Prometheus
 
 We have chosen to use a push approach to send the metrics from the edge nodes to the central hub using remote-write storage configuration. Though, we will use `net=host` param only for debugging purposes.
@@ -25,6 +27,8 @@ The command to run a prometheus container service in RHEL is:
 ```bash
 podman run \
   --detach="true" \
+  --log-driver="journald" \ 
+  --log-opt tag="{{.Name}}" \
   --volume="/etc/prometheus:/etc/prometheus:z" \
   --net="host" \
   --name="prometheus" \
@@ -53,6 +57,8 @@ Similar as we have done with prometheus, we can deploy node-exporter with:
 ```bash
 podman run \
   --detach="true" \
+  --log-driver="journald" \ 
+  --log-opt tag="{{.Name}}" \
   --volume="/:/host:ro,rslave" \
   --net="host" \
   --pid="host" \
@@ -93,6 +99,8 @@ Then, we will run the containers in the pod space with `--pod`
 podman run \
   --pod="postgresql" \
   --detach="true" \
+  --log-driver="journald" \ 
+  --log-opt tag="{{.Name}}" \
   --net="host" \
   --env="POSTGRES_PASSWORD=password" \
   --name="postgresql-db" \
@@ -103,6 +111,8 @@ podman run \
 podman run \
   --pod="postgresql" \
   --detach="true" \
+  --log-driver="journald" \ 
+  --log-opt tag="{{.Name}}" \
   --net="host" \
   --env="DATA_SOURCE_NAME=postgresql://postgres:password@localhost:5432/postgres?sslmode=disable" \
   --name="postgresql-exporter" \
@@ -113,4 +123,21 @@ Now, we can create the systemd unit with all the containers.
 
 ```bash
 podman generate systemd --files --name postgresql
+```
+
+## Promtail
+
+[Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) is a log scrapper particularly recommended for [Loki](https://grafana.com/docs/loki/latest/). 
+
+```bash
+podman run --rm \
+  --detach=true \
+  --log-driver="journald" \ 
+  --log-opt tag="{{.Name}}" \
+  --volume="/var/tmp/:/var/tmp:z" \
+  --volume="/var/log/journal/:/var/log/journal:z" \
+  --volume="/etc/loki/:/etc/loki:z" \
+  --publish=9080:9080 \
+  --name=promtail \
+  grafana/promtail -config.file=/etc/loki/promtail.yml
 ```

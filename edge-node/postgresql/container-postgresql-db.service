@@ -16,7 +16,7 @@ Environment=PODMAN_SYSTEMD_UNIT=%n
 Restart=on-failure
 TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/%n.ctr-id
-ExecStart=/usr/bin/podman run --cidfile=%t/%n.ctr-id --sdnotify=conmon --cgroups=no-conmon --rm --pod-id-file %t/pod-postgresql.pod-id --replace --detach=true --net=host --env=POSTGRES_PASSWORD=password --name=postgresql-db docker.io/library/postgres:latest
+ExecStart=/usr/bin/podman run --cidfile=%t/%n.ctr-id --sdnotify=conmon --cgroups=no-conmon --rm --pod-id-file %t/pod-postgresql.pod-id --replace --detach=true --log-driver=journald --log-opt tag="{{.Name}}" --net=host --env=POSTGRES_PASSWORD=password --name=postgresql-db docker.io/library/postgres:latest
 ExecStop=/usr/bin/podman stop --ignore --cidfile=%t/%n.ctr-id
 ExecStopPost=/usr/bin/podman rm -f --ignore --cidfile=%t/%n.ctr-id
 Type=notify

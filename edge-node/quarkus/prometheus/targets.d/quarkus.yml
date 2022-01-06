@@ -1,0 +1,4 @@
+- targets: ['localhost:8080']
+  labels:
+    job: 'quarkus'
+    __metrics_path__: 'q/metrics'
