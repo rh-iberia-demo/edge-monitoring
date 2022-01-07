@@ -4,7 +4,7 @@ global:
   # scrape_timeout is set to the global default (10s).
   external_labels:
     receive_cluster: "es"
-#   hostname: ${HOSTNAME}
+    hostname: ${HOSTNAME}
 
 # Alertmanager configuration
 alerting:
