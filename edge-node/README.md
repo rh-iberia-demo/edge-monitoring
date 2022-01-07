@@ -125,6 +125,9 @@ Now, we can create the systemd unit with all the containers.
 podman generate systemd --files --name postgresql
 ```
 
+## Quarkus (Cart Item Sample App)
+
+
 ## Promtail
 
 [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) is a log scrapper particularly recommended for [Loki](https://grafana.com/docs/loki/latest/). 
@@ -132,12 +135,12 @@ podman generate systemd --files --name postgresql
 ```bash
 podman run --rm \
   --detach=true \
-  --log-driver="journald" \ 
+  --log-driver="journald" \
   --log-opt tag="{{.Name}}" \
   --volume="/var/tmp/:/var/tmp:z" \
   --volume="/var/log/journal/:/var/log/journal:z" \
-  --volume="/etc/loki/:/etc/loki:z" \
+  --volume="/etc/promtail/:/etc/promtail:z" \
   --publish=9080:9080 \
   --name=promtail \
-  grafana/promtail -config.file=/etc/loki/promtail.yml
+  grafana/promtail -config.file=/etc/promtail/config.yml
 ```
