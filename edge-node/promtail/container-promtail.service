@@ -14,7 +14,7 @@ Environment=PODMAN_SYSTEMD_UNIT=%n
 Restart=on-failure
 TimeoutStopSec=70
 ExecStartPre=/bin/rm -f %t/%n.ctr-id
-ExecStart=/usr/bin/podman run --cidfile=%t/%n.ctr-id --sdnotify=conmon --cgroups=no-conmon --rm --replace --detach --log-driver=journald --log-opt tag="{{.Name}}"  --volume="/var/tmp/:/var/tmp:z"  --volume="/var/log/journal/:/var/log/journal:z" --volume="/etc/promtail/:/etc/promtail:z" --publish=9080:9080 --name=promtail grafana/promtail
+ExecStart=/usr/bin/podman run --cidfile=%t/%n.ctr-id --sdnotify=conmon --cgroups=no-conmon --rm --replace --detach --log-driver=journald --log-opt tag="{{.Name}}"  --volume="/var/tmp/:/var/tmp:z"  --volume="/var/log/journal/:/var/log/journal:z" --volume="/etc/promtail/:/etc/promtail:z" --publish=9080:9080 --name=promtail docker.io/grafana/promtail:2.4.1
 ExecStop=/usr/bin/podman stop --ignore --cidfile=%t/%n.ctr-id
 ExecStopPost=/usr/bin/podman rm -f --ignore --cidfile=%t/%n.ctr-id
 Type=notify

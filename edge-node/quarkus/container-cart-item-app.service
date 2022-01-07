@@ -5,10 +5,10 @@
 [Unit]
 Description=Podman container-cart-item-app.service
 Documentation=man:podman-generate-systemd(1)
-Wants=network-online.target pod-postgresql.service
-After=network-online.target pod-postgresql.service
+Wants=network-online.target container-postgresql-db.service
+After=network-online.target container-postgresql-db.service
 RequiresMountsFor=%t/containers
-Requires=pod-postgresql.service
+Requires=container-postgresql-db.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
