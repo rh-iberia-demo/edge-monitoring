@@ -79,7 +79,7 @@ cp edge-node/quarkus/prometheus/targets.d/quarkus.yml %{buildroot}%{_sysconfdir}
 %{_sysconfdir}/prometheus/targets.d/promtail.yml
 %{_sysconfdir}/prometheus/targets.d/postgresql-exporter.yml
 %{_sysconfdir}/prometheus/targets.d/quarkus.yml
-%{_sysconfdir}/prometail/config.yml
+%{_sysconfdir}/promtail/config.yml
 
 %post
 %systemd_post container-prometheus.service
