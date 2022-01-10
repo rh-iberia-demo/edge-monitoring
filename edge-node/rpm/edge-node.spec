@@ -36,13 +36,13 @@ mkdir -p %{buildroot}%{_sysconfdir}/prometheus
 mkdir -p %{buildroot}%{_sysconfdir}/prometheus/targets.d
 mkdir -p %{buildroot}%{_sysconfdir}/promtail
 
-cp edge-node/prometheus/container-prometheus.service %{buildroot}%{_unitdir}
-cp edge-node/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
-cp edge-node/promtail/container-promtail.service %{buildroot}%{_unitdir}
-cp edge-node/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
-cp edge-node/postgresql/container-postgresql-db.service %{buildroot}%{_unitdir}
-cp edge-node/postgresql/pod-postgresql.service %{buildroot}%{_unitdir}
-cp edge-node/quarkus/container-cart-item-app.service %{buildroot}%{_unitdir}
+cp edge-node/components/prometheus/container-prometheus.service %{buildroot}%{_unitdir}
+cp edge-node/components/node-exporter/container-node-exporter.service %{buildroot}%{_unitdir}
+cp edge-node/components/promtail/container-promtail.service %{buildroot}%{_unitdir}
+cp edge-node/components/postgresql/container-postgresql-exporter.service %{buildroot}%{_unitdir}
+cp edge-node/components/postgresql/container-postgresql-db.service %{buildroot}%{_unitdir}
+cp edge-node/components/postgresql/pod-postgresql.service %{buildroot}%{_unitdir}
+cp edge-node/components/quarkus/container-cart-item-app.service %{buildroot}%{_unitdir}
 
 echo "enable container-prometheus.service" > %{buildroot}%{_presetdir}/80-container-prometheus.preset
 echo "enable container-node-exporter.service" > %{buildroot}%{_presetdir}/80-container-node-exporter.preset
@@ -52,11 +52,11 @@ echo "enable container-postgresql-db.service" > %{buildroot}%{_presetdir}/80-con
 echo "enable pod-postgresql.service" > %{buildroot}%{_presetdir}/80-pod-postgresql.preset
 echo "enable container-cart-item-app.service" > %{buildroot}%{_presetdir}/80-container-cart-item-app.preset
 
-cp edge-node/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
-cp edge-node/promtail/config.yml %{buildroot}%{_sysconfdir}/promtail
-cp edge-node/promtail/prometheus/targets.d/promtail.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
-cp edge-node/postgresql/prometheus/targets.d/postgresql-exporter.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
-cp edge-node/quarkus/prometheus/targets.d/quarkus.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
+cp edge-node/components/prometheus/prometheus.yml %{buildroot}%{_sysconfdir}/prometheus
+cp edge-node/components/promtail/config.yml %{buildroot}%{_sysconfdir}/promtail
+cp edge-node/components/promtail/prometheus/targets.d/promtail.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
+cp edge-node/components/postgresql/prometheus/targets.d/postgresql-exporter.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
+cp edge-node/components/quarkus/prometheus/targets.d/quarkus.yml %{buildroot}%{_sysconfdir}/prometheus/targets.d
 
 %files
 %{_unitdir}/container-prometheus.service
